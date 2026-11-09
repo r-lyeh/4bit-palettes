@@ -157,6 +157,10 @@ static char *read_file(const char *path) {
 #include "spectral/zx_pal.h"
 #define NUM_PALETTES (ZX_PALETTE_EXTERNAL-1)
 
+unsigned char clamp255(float v) {
+    return v > 255 ? 255 : (v > 0 ? v : 0);
+}
+
 static int load_palettes(Palette **out) {
     int count = NUM_PALETTES;
     Palette *items = realloc(NULL, count * sizeof *items);
@@ -165,10 +169,13 @@ static int load_palettes(Palette **out) {
     {
         Palette pal = {0};
 
-        for( int i = 0; i < 16; ++i )
-            pal.colors[i].r = (ZXPalettes[p][i] >>  0) & 255,
-            pal.colors[i].g = (ZXPalettes[p][i] >>  8) & 255,
-            pal.colors[i].b = (ZXPalettes[p][i] >> 16) & 255;
+        float bloom = ((ZXPaletteNames[p][0] - '0') * 10 + ZXPaletteNames[p][1] - '0') / 100.f; bloom = 1.0 + bloom * bloom;
+
+        for( int i = 0; i < 16; ++i ) {
+            pal.colors[i].r = clamp255( bloom * ((ZXPalettes[p][i] >>  0) & 255)),
+            pal.colors[i].g = clamp255( bloom * ((ZXPalettes[p][i] >>  8) & 255)),
+            pal.colors[i].b = clamp255( bloom * ((ZXPalettes[p][i] >> 16) & 255));
+        }
 
         snprintf(pal.name, sizeof pal.name, "%s", ZXPaletteNames[p] + 2);
 
@@ -187,6 +194,7 @@ static int load_palettes(Palette **out) {
 }
 
 static uint8_t ula(RGB c) {
+    // note: If you’re generating a software preview of the color ULA+ will display, expand blue’s top two bits into three by setting the low bit to their OR
     return (uint8_t)((c.g & 0xE0) | ((c.r >> 3) & 0x1C) | (c.b >> 6));
 }
 
@@ -211,10 +219,22 @@ static int write_tap(const char *path, const Palette *p) {
     unsigned char program[150];
     memcpy(program, basic_prefix, 48);
     memcpy(program+48, z80_loader, 38);
+#if 0
     for (int i = 0; i < 16; ++i) program[86+i] = ula(p->colors[i]);
     memset(program+102, 0, 48);
+#else
+    // off, bright, off+flash, bright+flash
+    for (int j = 0; j < 4; ++j)
+        for (int i = 0; i < 16; ++i) {
+            int color = i & 7;
+            int bright = j & 1;
+            int flash = j > 1;
+            if( flash ) bright ^= 1; // simulate a change in bright since we dont have flash in ula+
+            program[86 + i + j * 16] = ula(p->colors[color + bright * 8]);
+        }
+#endif
 
-    unsigned char header[19] = {0,0, 0x14,0x01,'6','4','c','o','l','o','u','r'};
+    unsigned char header[19] = {0,0, 0x14,0x01,'1','6','c','o','l','o','u','r'};
     put16(header+12, sizeof program);
     put16(header+14, 0);
     put16(header+16, sizeof program);
@@ -343,7 +363,7 @@ int main(int argc, char **argv) {
         stbi_write_png(path, W, H*ni, 3, sheet, W*3);
         free(sheet);
 
-        fprintf(README, "<img src=\"%s.png\" alt=\"%s\" width=16px/>", name, name);
+        fprintf(README, "<img src=\"%s.png\" alt=\"%s\" width=15px/>", name, name);
     }
 
     fclose(README);

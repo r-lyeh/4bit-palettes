@@ -13,6 +13,16 @@ rgb(   6,   6,   6),rgb(  34,  24,  80),rgb( 128,  32,   0),rgb( 137,  12, 137),
 rgb(   6,   6,   6),rgb(   9,  51, 121),rgb( 183,   0,   4),rgb( 192,   3,  84),rgb( 153, 204,   0),rgb(   0, 216, 128),rgb( 244, 196,   0),rgb( 241, 255, 217),
 */
 
+/*
+idea: blade runner, troya
+*/
+
+// rejected: asterix, too washed
+//   rgb(  25,  25,  23),rgb(  20, 117, 185),rgb( 201, 106,  40),rgb( 164, 146, 194),rgb(   8, 155,  67),rgb( 131, 188, 233),rgb( 247, 177,  27),rgb( 206, 202, 206),
+//   rgb(  25,  25,  23),rgb(  77, 126, 192),rgb( 230,  55,  38),rgb( 236, 103, 158),rgb(  89, 188,  82),rgb( 184, 220, 244),rgb( 225, 223,   1),rgb( 248, 248, 255),
+// rejected: lucasarts atari-st palette (ega)
+// rejected: PC6001: https://lospec.com/palette-list/nec-p6 + https://lospec.com/palette-list/nec-pc-6001-mk2
+
 #define luma(r,g,b) ((byte)((r)*0.299+(g)*0.587+(b)*0.114))
 #define gray(r,g,b) rgb(luma(r,g,b),luma(r,g,b),luma(r,g,b))
 #define gray3(l)    rgb(l,l,l)
@@ -28,73 +38,77 @@ const char *ZXPaletteNames[] = {
     /*#03*/ "00" "Modern",
     /*#04*/ "00" "Reborn",
     /*#05*/ "00" "Remix",
-    /*#06*/ "00" "Winners\n",
+    /*#06*/ "00" "Winners",
+    /*#07*/ "00" "Origins\n",
 
-    /*#07*/ "00" "Merlot",
-    /*#08*/ "00" "Fantasy",
-    /*#09*/ "00" "Hue",
-    /*#10*/ "00" "Hue+",
-    /*#11*/ "00" "Dream",
-    /*#12*/ "00" "Skin\n",
+    /*#08*/ "00" "Merlot",
+    /*#09*/ "00" "Fantasy",
+    /*#10*/ "00" "Hue",
+    /*#11*/ "00" "Hue+",
+    /*#12*/ "00" "Dream",
+    /*#13*/ "00" "Skin\n",
 
-    /*#13*/ "00" "Quirkafleeg",
-    /*#14*/ "00" /*"Quirkafleeg "*/ "II",
+    /*#14*/ "00" "Quirkafleeg",
+    /*#15*/ "00" /*"Quirkafleeg "*/ "II",
+    /*#16*/ "00" "PurpleRain",
+    /*#17*/ "00" "Angrite",
+    /*#18*/ "00" "Angrite2\n",
 
-    /*#15*/"00" "PurpleRain",
-    /*#16*/"00" "Angrite",
-    /*#17*/"00" "Angrite2\n",
+    /*#19*/ "00" "Promise\n",
 
-    "00" "MM", // micromania magazine https://archive.org/details/MicromaniaPrimerEpocaspanishIssue23/page/n41/mode/2up
-    "00" "MH", // microhobby magazine https://archive.org/details/microhobby-magazine-217.pdf/page/n41/mode/2up
-    "00" "Crash", // Crash magazine, from zxspin2
-    "00" "YS", // YourSinclair magazine, from zxspin2
-//    "00" "Asterix",
-    "00" "Tintin", // tornasol case front page
+    /*#20*/ "00" "Kid15",
+    /*#21*/ "00" "Tintin", // tintin: front pages
+    /*#22*/ "00" "Autumn",
+    /*#23*/ "00" "Sherwood",
+    /*#24*/ "00" "Natural52\n",
 
-"00" "Autumn\n",
+    /*#25*/ "00" "Crash", // Crash magazine, from zxspin2
+    /*#26*/ "00" "YS", // YourSinclair magazine, from zxspin2
+    /*#27*/ "00" "SU", // sinclairuser magazine https://archive.org/details/SinclairUser033Dec84/SinclairUser/SinclairUser060-Mar87/page/n31/mode/2up
+    /*#28*/ "00" "MM", // micromania magazine https://archive.org/details/MicromaniaPrimerEpocaspanishIssue23/page/n41/mode/2up
+    /*#29*/ "00" "MH\n", // microhobby magazine https://archive.org/details/microhobby-magazine-217.pdf/page/n41/mode/2up
 
-    /*#18*/ "00" "Origins",
+    /*#30*/ "00" "Tic80",
+    /*#31*/ "00" "Pico8",
+    /*#32*/ "00" "Petit",
+    /*#33*/ "00" "Bringer",
+    /*#34*/ "00" "Endesga\n",
 
-    /*#19*/ "00" "Pico8",
-    /*#20*/ "00" "Petit",
-    /*#21*/ "00" "Bringer",
-    /*#22*/"00" "Endesga\n",
+    /*#35*/ "00" "Gradients", // best with ZX_BLOOM=40 ?
+    /*#36*/ "00" "Vivid",
+    /*#37*/ "00" "Spectacle",
+    /*#38*/ "00" "Konni",
+    /*#39*/ "00" "Atkinson\n", // probably best with ZX_BLOOM=20
 
-    /*#23*/ "00" "Gradients", // best with ZX_BLOOM=40 ?
-    /*#24*/ "00" "Vivid",
+    /*#40*/ "00" "Sintez2",
+    /*#41*/ "40" "CPC",
+    /*#42*/ "00" "CGA",
+    /*#43*/ "00" "EGA",
+    /*#44*/ "00" "MSX2\n",
 
-    /*#25*/"00" "Spectacle",
+    /*#45*/ "00" "Gameboy",
+    /*#46*/ "90" "PCW", // best with ZX_BLOOM=90
+    /*#47*/ "90" "Amber\n", // best with ZX_BLOOM=90
 
-    /*#26*/ "00" "Konni\n",
+    /*#48*/ "00" "Noir",
+    /*#49*/ "00" "Telly",
+    /*#50*/ "00" "Ilford",
+    /*#51*/ "00" "B&W",
+    /*#52*/ "00" "Greylit",
+    /*#53*/ "20" "Negative\n", // best with ZX_BLOOM=20
 
-    /*#27*/ "00" "Atkinson", // probably best with ZX_BLOOM=20
-    /*#28*/ "00" "Sintez2\n",
-
-    /*#29*/ "40" "CPC",
-    /*#30*/ "00" "CGA",
-    /*#31*/ "00" "EGA",
-    /*#32*/ "00" "MSX2",
-//"00" "PC6001",
-    /*#33*/ "00" "Gameboy",
-    /*#34*/ "90" "PCW", // best with ZX_BLOOM=90
-    /*#35*/ "90" "Amber\n", // best with ZX_BLOOM=90
-
-    /*#36*/ "00" "Noir",
-    /*#37*/ "00" "Telly",
-
-    /*#38*/ "00" "Ilford",
-    /*#39*/"00" "B&W",
-
-    /*#40*/ "00" "Greylit",
-    /*#41*/ "20" "Negative\n", // best with ZX_BLOOM=20
-/*#42*/ "00" "Extended", // must be last entry minus 1
-    /*#43*/ "00" "External", // must be last entry
+    /*#54*/ "00" "Extended", // must be last entry minus 1
+    /*#55*/ "00" "External", // must be last entry
 };
 
 // default palettes used elsewhere
-enum { ZX_PALETTE_PLAYER = 23+6 }; // gradients now; vivid before
-enum { ZX_PALETTE_GRAY = 36+6 }; // noir
 enum { ZX_PALETTE_EXTERNAL = countof(ZXPaletteNames)-1, ZX_PALETTE_EXTENDED = ZX_PALETTE_EXTERNAL-1 };
+enum { ZX_PALETTE_PLAYER = ZX_PALETTE_EXTERNAL-19 }; // gradients now; vivid before
+enum { ZX_PALETTE_GRAY = ZX_PALETTE_EXTERNAL-4 }; // bw
+
+const char *ZXPalettesInfo[] = {
+    "",
+};
 
 rgba ZXPalettes[][64] = {
 
@@ -105,7 +119,7 @@ rgba ZXPalettes[][64] = {
     {
         // spectral palette. note: no pure black
         rgb(0x12,0x10,0x12),rgb(0x00,0x00,0xAC),rgb(0xAC,0x00,0x00),rgb(0xAC,0x00,0xAC),
-        rgb(0x00,0xAC,0x00),rgb(0x00,0xAC,0xAC),rgb(0xAC,0xAC,0x00),rgb(0xAC,0xAC,0xAC),
+        rgb(0x00,0xAC,0x00),rgb(0x00,0xAC,0xAC),rgb(0xAC,0xAC,0x00),rgb(181,181,181),
         rgb(0x12,0x10,0x12),rgb(0x00,0x00,0xFF),rgb(0xFF,0x00,0x00),rgb(0xFF,0x00,0xFF),
         rgb(0x00,0xFF,0x00),rgb(0x00,0xFF,0xFF),rgb(0xFF,0xFF,0x00),rgb(0xFF,0xFF,0xFF),
     },
@@ -189,6 +203,12 @@ rgba ZXPalettes[][64] = {
         rgb(   4,  12,  24),rgb(   0,   0, 151),rgb( 150,  24,  0),rgb( 148,  16, 175),rgb(  13, 136,  29),rgb(   0, 176, 160),rgb( 221, 183,   0),rgb( 172, 172, 172),
         rgb(   4,  12,  24),rgb(   0,   0, 220),rgb( 204,   0,  0),rgb( 209,  14, 155),rgb(  84, 223,   0),rgb(   0, 236, 220),rgb( 255, 230,   0),rgb( 255, 255, 255),
     },
+    {
+        // origins
+        rgb(   0,  19,  30),rgb(   0,   0, 155),rgb( 145,   0,  29),rgb( 182,   0,  92),rgb(   0, 130,   0),rgb(   0, 151, 231),rgb( 255, 174,   0),rgb( 182, 196, 211),
+        rgb(   0,  19,  30),rgb(  11,   0, 217),rgb( 204,   0,  20),rgb( 248,   0, 133),rgb( 100, 216,   0),rgb(   0, 201, 254),rgb( 255, 212,   0),rgb( 216, 254, 254),
+    },
+
     {
         // Merlot
         rgb(  0,  0, 24),rgb(  0, 30,118),rgb(140,  0, 63),rgb(200,  0,  0),rgb( 13,136, 29),rgb(  0,152,196),rgb(216,146,  1),rgb(169,169,169),
@@ -383,35 +403,27 @@ rgba ZXPalettes[][64] = {
         rgb(   6,  25,  40),rgb(  16,  37, 140),rgb( 172,   0,   0),rgb( 192,   3,  84),rgb( 153, 204,   0),rgb(   0, 216, 128),rgb( 244, 196,   0),rgb( 235, 222, 205),
     },
     {
-        // MM https://archive.org/details/MicromaniaPrimerEpocaspanishIssue23/page/n41/mode/2up
-        rgb(  28,  23,  25),rgb(  91,  85, 119),rgb( 167,  51,  48),rgb( 190,  41,  71),rgb(  93, 136, 123),rgb(  65, 141, 203),rgb( 205, 208,  64),rgb( 221, 219, 220),
-        rgb(  28,  23,  25),rgb(  41, 106, 171),rgb( 196,  50,  34),rgb( 214,  31,  72),rgb(  70, 155, 130),rgb(  81, 170, 210),rgb( 240, 234,   0),rgb( 244, 244, 244),
+        // promise, this one is promising (WIP)
+        rgb(   0,   0,  31),rgb(  28,  40,  83),rgb( 101,  43,  18),rgb( 111,   0, 147),rgb(  44, 143,  51),rgb(   4, 135, 198),rgb( 224, 157,   1),rgb( 193, 194, 171),
+        rgb(   0,   0,  31),rgb(  14,  35, 156),rgb( 180,  29,   0),rgb( 210,   0, 121),rgb( 128, 192,   0),rgb(  41, 184, 255),rgb( 225, 198,   0),rgb( 233, 225, 214),
     },
+
     {
-        // MH https://archive.org/details/microhobby-magazine-217.pdf/page/n41/mode/2up
-        rgb(   1,   5,   9),rgb(  49,  93, 125),rgb( 132,  51,  42),rgb( 203, 125, 167),rgb(  67, 160,  92),rgb(  59, 154, 219),rgb( 234, 233,  69),rgb( 242, 244, 240),
-        rgb(   1,   5,   9),rgb(  31,  76, 160),rgb( 213,  40,   1),rgb( 238, 102, 116),rgb( 150, 196, 108),rgb( 142, 194, 239),rgb( 250, 247, 141),rgb( 255, 255, 251),    
+        // kid15 taken from https://lospec.com/palette-list/24p-dx by grafxkid
+        //rgb(  23,  15,   7),rgb(  13,  65,  87),rgb( 111,  36,  29),rgb(  99,  44,  83),rgb(  32, 121,  73),rgb(   0, 171, 196),rgb( 238, 131,   0),rgb( 201, 183, 156),
+        //rgb(  23,  15,   7),rgb(   0, 113, 157),rgb( 192,  70,  14),rgb( 183,  70, 108),rgb( 102, 182,  50),rgb( 111, 221, 213),rgb( 255, 196,  45),rgb(0xfc,0xf5,0xe8),
+
+        // modified
+        rgb(  23,  15,   7),rgb(  20,  40,  73),rgb( 111,  36,  29),rgb(  99,  44,  83),rgb(  32, 121,  73),rgb(   0, 171, 196),rgb( 238, 131,   0),rgb( 210, 196, 172),
+        rgb(  23,  15,   7),rgb(   4,  43, 106),rgb( 192,  70,  14),rgb( 183,  70, 108),rgb( 102, 182,  50),rgb( 111, 221, 213),rgb( 255, 196,  45),rgb( 252, 245, 232),
+
+        // kid16, modified from kid15
+        //rgb(  23,  15,   7),rgb(  12,  36,  78),rgb( 112,  29,  29),rgb(  99,  44,  85),rgb(  32, 121,  77),rgb(   0, 147, 196),rgb( 238, 179,   0),rgb( 217, 204, 185),
+        //rgb(  23,  15,   7),rgb(  14,  45, 135),rgb( 196,  11,  57),rgb( 183,  70, 113),rgb( 100, 182,  50),rgb( 111, 207, 221),rgb( 253, 220,   0),rgb( 252, 245, 232),        
     },
-    {
-        // Crash magazine palette, courtesy from ZXSpin2
-        rgb( 25,  25,  25),rgb( 56,  66, 108),rgb(121,  59,  46),rgb(125,  85, 107),rgb( 91, 103,  55),rgb(100, 123, 136),rgb(174, 126,  67),rgb(180, 165, 150),
-        rgb( 25,  25,  25),rgb( 60,  80, 120),rgb(126,  62,  35),rgb(125,  94, 135),rgb( 97, 112,  75),rgb( 97, 133, 157),rgb(176, 131, 101),rgb(200, 190, 175),
-    },
-    {
-        // YourSinclair magazine palette, courtesy from ZXSpin2
-        rgb(   5,  15,  10),rgb(  24,  56,  92),rgb(145,  76,  53),rgb(100, 44, 92),rgb( 39, 95, 71),rgb( 68, 106, 137),rgb(154, 143,  72),rgb(183, 183, 174),
-        rgb(   5,  16,  10),rgb(  30,  70, 115),rgb(190, 100,  70),rgb(140, 81,171),rgb( 50,120, 90),rgb( 90, 140, 180),rgb(215, 200, 100),rgb(210, 210, 200),
-    },
-#if 0
-    {
-        // asterix
-        rgb(  25,  25,  23),rgb(  20, 117, 185),rgb( 201, 106,  40),rgb( 164, 146, 194),rgb(   8, 155,  67),rgb( 131, 188, 233),rgb( 247, 177,  27),rgb( 206, 202, 206),
-        rgb(  25,  25,  23),rgb(  77, 126, 192),rgb( 230,  55,  38),rgb( 236, 103, 158),rgb(  89, 188,  82),rgb( 184, 220, 244),rgb( 225, 223,   1),rgb( 248, 248, 255),
-    },
-#endif
     {
         // tintin: sampled from front-page magazines
-        rgb(  12,  14,  11),rgb(  24,  55,  80),rgb( 109,  29,  18),rgb( 138,  54,  14),rgb(  45, 117,  18),rgb(  95, 127, 152),rgb( 215, 156,  54),rgb( 205, 189, 176),
+        rgb(  12,  14,  11),rgb(  24,  55,  80),rgb( 109,  29,  18),rgb( 138,  54,  14),rgb(  45, 117,  18),rgb(  77, 127, 152),rgb( 215, 156,  54),rgb( 205, 189, 176),
         rgb(  12,  14,  11),rgb(   1,  60, 176),rgb( 205,  28,  11),rgb( 212,  95,   2),rgb( 139, 182,  15),rgb(   0, 152, 196),rgb( 248, 217,  11),rgb( 254, 238, 204),
     },
     {
@@ -422,11 +434,72 @@ rgba ZXPalettes[][64] = {
         rgb(   0,   0,  34),rgb(   1,  38,  99),rgb( 125,  22,   0),rgb( 153,  58,   2),rgb(  57, 125,  71),rgb(  28, 120, 159),rgb( 222, 176,  20),rgb( 209, 198, 217),
     },
     {
-        // origins
-        rgb(   0,  19,  30),rgb(   0,   0, 155),rgb( 145,   0,  29),rgb( 182,   0,  92),rgb(   0, 130,   0),rgb(   0, 151, 231),rgb( 255, 174,   0),rgb( 182, 196, 211),
-        rgb(   0,  19,  30),rgb(  11,   0, 217),rgb( 204,   0,  20),rgb( 248,   0, 133),rgb( 100, 216,   0),rgb(   0, 201, 254),rgb( 255, 212,   0),rgb( 216, 254, 254),
+        // Sherwood, original purple blues
+        // rgb(   0,   0,  30),rgb(  47,  34,  83),rgb( 120,  53,  31),rgb( 147,  40,  67),rgb(  77, 121,  32),rgb(   0, 183, 137),rgb( 215, 162,   0),rgb( 217, 204, 185),
+        // rgb(   0,   0,  30),rgb(  67,  44, 105),rgb( 184,  70,   1),rgb( 211,  37,  85),rgb( 149, 182,  50),rgb( 111, 221, 193),rgb( 253, 190,   0),rgb( 252, 245, 232),
+        
+        // mud blues
+        //rgb(   0,   0,  30),rgb(  23,  51,  55),rgb( 120,  53,  31),rgb( 147,  40,  67),rgb(  77, 121,  32),rgb(   0, 183, 137),rgb( 215, 162,   0),rgb( 217, 204, 185),
+        //rgb(   0,   0,  30),rgb(  29,  66,  71),rgb( 184,  70,   1),rgb( 211,  37,  85),rgb( 149, 182,  50),rgb( 111, 221, 193),rgb( 253, 190,   0),rgb( 252, 245, 232),
+
+        // ocean blues
+        rgb(   0,   0,  30),rgb(   5,  43,  58),rgb( 120,  53,  31),rgb( 147,  40,  67),rgb(  77, 121,  32),rgb(   0, 183, 137),rgb( 215, 162,   0),rgb( 217, 204, 185),
+        rgb(   0,   0,  30),rgb(   6,  52,  79),rgb( 184,  70,   1),rgb( 211,  37,  85),rgb( 149, 182,  50),rgb( 111, 221, 193),rgb( 253, 190,   0),rgb( 252, 245, 232),
+    },
+    {
+        // natural adapted from natural color system 1952, https://lospec.com/palette-list/natural-colour-system-16
+        rgb(  28,  16,  28),rgb(   2,  39,  22),rgb( 107,   0,   0),rgb(  74,  57,  21),rgb(   0, 119, 102),rgb( 136, 136, 100),rgb( 242, 167,  93),rgb( 220, 220, 201),
+        rgb(  28,  16,  28),rgb(   0,  83, 101),rgb( 172,  25,   0),rgb( 182,  92,  54),rgb( 112, 166,  21),rgb( 107, 181, 164),rgb( 240, 220,  62),rgb( 255, 255, 238),
+
+        // Natural52
+        rgb(  28,  16,  28),rgb(  28,  60,  66),rgb( 128,   0,   0),rgb( 130,  85,  40),rgb(   4, 102,  34),rgb(   0, 111, 170),rgb( 196, 162,  60),rgb( 220, 220, 201),
+        rgb(  28,  16,  28),rgb(  41,  89,  99),rgb( 172,  25,   0),rgb( 176,  96,  15),rgb( 112, 166,  21),rgb(  19, 147, 215),rgb( 240, 222,  62),rgb( 255, 255, 238),
+
+        // Natural52
+        rgb(  28,  16,  28),rgb(   4,  66,  79),rgb( 107,   0,   0),rgb(  74,  57,  21),rgb(   5, 101,  58),rgb(   0, 119, 102),rgb( 242, 167,  93),rgb( 220, 220, 201),
+        rgb(  28,  16,  28),rgb(   0,  83, 101),rgb( 172,  25,   0),rgb( 182,  92,  54),rgb( 112, 166,  21),rgb( 107, 181, 164),rgb( 240, 220,  62),rgb( 255, 255, 238),
     },
 
+    {
+        // Crash magazine palette, courtesy from ZXSpin2
+        rgb( 25,  25,  25),rgb( 56,  66, 108),rgb(121,  59,  46),rgb(125,  85, 107),rgb( 91, 103,  55),rgb(100, 123, 136),rgb(174, 126,  67),rgb(180, 165, 150),
+        rgb( 25,  25,  25),rgb( 60,  80, 120),rgb(126,  62,  35),rgb(125,  94, 135),rgb( 97, 112,  75),rgb( 97, 133, 157),rgb(176, 131, 101),rgb(200, 190, 175),
+    },
+    {
+        // YS YourSinclair magazine palette, courtesy from ZXSpin2
+        rgb(   5,  15,  10),rgb(  24,  56,  92),rgb(145,  76,  53),rgb(100, 44, 92),rgb( 39, 95, 71),rgb( 68, 106, 137),rgb(154, 143,  72),rgb(183, 183, 174),
+        rgb(   5,  16,  10),rgb(  30,  70, 115),rgb(190, 100,  70),rgb(140, 81,171),rgb( 50,120, 90),rgb( 90, 140, 180),rgb(215, 200, 100),rgb(210, 210, 200),
+    },
+    {
+        // SU sinclairuser magazine palette, https://archive.org/details/SinclairUser033Dec84/SinclairUser/SinclairUser060-Mar87/page/n31/mode/2up
+        rgb(  29,  20,  28),rgb(  47,  74, 123),rgb( 146,  52,  23),rgb( 104,  36,  68),rgb(  31, 115,  63),rgb(  68, 120, 148),rgb( 194, 189,  69),rgb( 154, 143, 125),
+        rgb(  29,  20,  28),rgb(  65,  86, 132),rgb( 184,  80,  66),rgb( 158,  58,  89),rgb(  75, 126,  87),rgb( 117, 157, 196),rgb( 221, 214,  99),rgb( 204, 207, 211),
+    },
+    {
+        // MM https://archive.org/details/MicromaniaPrimerEpocaspanishIssue23/page/n41/mode/2up
+        rgb(  28,  23,  25),rgb(  91,  85, 119),rgb( 167,  51,  48),rgb( 190,  41,  71),rgb(  93, 136, 123),rgb(  65, 141, 203),rgb( 205, 208,  64),rgb( 221, 219, 220),
+        rgb(  28,  23,  25),rgb(  41, 106, 171),rgb( 196,  50,  34),rgb( 214,  31,  72),rgb(  70, 155, 130),rgb(  81, 170, 210),rgb( 240, 234,   0),rgb( 244, 244, 244),
+    },
+    {
+        // MH https://archive.org/details/microhobby-magazine-217.pdf/page/n41/mode/2up
+        rgb(   1,   5,   9),rgb(  49,  93, 125),rgb( 132,  51,  42),rgb( 203, 125, 167),rgb(  67, 160,  92),rgb(  59, 154, 219),rgb( 234, 233,  69),rgb( 242, 244, 240),
+        rgb(   1,   5,   9),rgb(  31,  76, 160),rgb( 213,  40,   1),rgb( 238, 102, 116),rgb( 150, 196, 108),rgb( 142, 194, 239),rgb( 250, 247, 141),rgb( 255, 255, 251),    
+    },
+
+    {
+        // tic80 https://lospec.com/palette-list/sweetie16 by grafxkid
+        // original, sorted
+        // rgb(  26,  29,  44),rgb(  93,  38,  92),rgb( 177,  62,  83),rgb( 239, 125,  86),rgb( 254, 205, 116),rgb( 167, 241, 112),rgb(  56, 183, 100),rgb(  37, 112, 120),
+        // rgb(  41,  55, 111),rgb(  58,  93, 200),rgb(  64, 166, 247),rgb( 115, 238, 246),rgb( 244, 244, 244),rgb( 148, 176, 194),rgb(  86, 108, 135),rgb(  51,  61,  87),
+
+        // original, arranged
+        // rgb(  26,  29,  44),rgb(  41,  55, 111),rgb(  93,  38,  92),rgb(  86, 108, 135),rgb(  37, 112, 120),rgb(  64, 166, 247),rgb( 239, 125,  86),rgb(  51,  61,  87),
+        // rgb( 167, 241, 112),rgb(  58,  93, 200),rgb( 177,  62,  83),rgb( 148, 176, 194),rgb(  56, 183, 100),rgb( 115, 238, 246),rgb( 254, 205, 116),rgb( 244, 244, 244),
+
+        // arranged, then a few color components swapped to create purples. toggle luma in blacks
+        rgb(  17,  19,  30),rgb(  41,  55, 111),rgb(  93,  38,  92),rgb( 108,  86, 135),rgb(  37, 112, 120),rgb(  64, 166, 247),rgb( 239, 125,  86),rgb( 148, 176, 194),
+        rgb(  17,  19,  30),rgb(  58,  93, 200),rgb( 177,  62,  83),rgb( 241, 112, 167),rgb(  56, 183, 100),rgb( 115, 238, 246),rgb( 254, 205, 116),rgb( 244, 244, 244),        
+    },
     {
         // pico8: bright blue had to be added. dark gray dropped
         // rgb(000,000,000),rgb( 29, 43, 83),rgb(171, 82, 54),rgb(126, 37, 83),
@@ -448,8 +521,8 @@ rgba ZXPalettes[][64] = {
         // rgb(  0,  0,  0),rgb(  0, 56,243),rgb(251, 24,  0),rgb(251, 89,195),
         // rgb(  0,243, 24),rgb(  0,186,251),rgb(251,227,  0),rgb(251,251,251),
 
-        // redone: no new colors: gray as cyan, dupe blue
-        rgb(0x00,0x00,0x00),rgb(0x00,0x38,0xf3),rgb(0x92,0x59,0x28),rgb(0x79,0x38,0xfb),
+        // redone: no new colors: gray as cyan, dark gray as blue
+        rgb(0x00,0x00,0x00),rgb(0x38,0x38,0x38),rgb(0x92,0x59,0x28),rgb(0x79,0x38,0xfb),
         rgb(0x00,0x79,0x00),rgb(0x00,0xba,0xfb),rgb(0xfb,0xa2,0x00),rgb(0xfb,0xcb,0xa2),
         rgb(0x00,0x00,0x00),rgb(0x00,0x38,0xf3),rgb(0xfb,0x18,0x00),rgb(0xfb,0x59,0xc3),
         rgb(0x00,0xf3,0x18),rgb(0xba,0xba,0xba),rgb(0xfb,0xe3,0x00),rgb(0xfb,0xfb,0xfb),
@@ -490,15 +563,11 @@ rgba ZXPalettes[][64] = {
         rgb(0x00,0xFF,0x00),rgb(0x00,0xFF,0xFF),rgb(0xFF,0xFF,0x00),rgb(0xFF,0xFF,0xFF),
     },
 
-#if 1
-
-// 1 Spectaculator
-{
-    rgb(0x00,0x00,0x00), rgb(0x00,0x00,0xCE), rgb(0xCE,0x00,0x00), rgb(0xCE,0x00,0xCE), rgb(0x00,0xCA,0x00), rgb(0x00,0xCA,0xCE), rgb(0xCE,0xCA,0x00), rgb(0xCE,0xCA,0xCE),
-    rgb(0x00,0x00,0x00), rgb(0x00,0x00,0xFF), rgb(0xFF,0x00,0x00), rgb(0xFF,0x00,0xFF), rgb(0x00,0xFB,0x00), rgb(0x00,0xFB,0xFF), rgb(0xFF,0xFB,0x00), rgb(0xFF,0xFB,0xFF)
-},
-
-#endif
+    {
+        // sampled from Spectaculator
+        rgb(0x00,0x00,0x00), rgb(0x00,0x00,0xCE), rgb(0xCE,0x00,0x00), rgb(0xCE,0x00,0xCE), rgb(0x00,0xCA,0x00), rgb(0x00,0xCA,0xCE), rgb(0xCE,0xCA,0x00), rgb(0xCE,0xCA,0xCE),
+        rgb(0x00,0x00,0x00), rgb(0x00,0x00,0xFF), rgb(0xFF,0x00,0x00), rgb(0xFF,0x00,0xFF), rgb(0x00,0xFB,0x00), rgb(0x00,0xFB,0xFF), rgb(0xFF,0xFB,0x00), rgb(0xFF,0xFB,0xFF)
+    },
 
     {
         // jussi ala-konni's
@@ -545,19 +614,19 @@ rgba ZXPalettes[][64] = {
         rgb(   0,   0,   0),rgb(   0,   0, 128),rgb( 128,   0,   0),rgb( 128,   0, 128),rgb(   0, 128,   0),rgb(   0, 128, 255),rgb( 255, 128,   0),rgb( 172, 172, 172),
         rgb(   0,   0,   0),rgb(   0,   0, 255),rgb( 255,   0,   0),rgb( 255,   0, 128),rgb(   0, 255,   0),rgb(   0, 255, 255),rgb( 255, 255,   0),rgb( 255, 255, 255),
     },
-{ 
-    // cga
-    //rgb(   0,   0,   0),rgb(   0,   0, 170),rgb( 170,   0,   0),rgb( 170,   0, 170),rgb(   0, 170,   0),rgb(   0, 170, 170),rgb( 170,  85,   0),rgb( 170, 170, 170),
-    //rgb(  85,  85,  85),rgb(  85,  85, 255),rgb( 255,  85,  85),rgb( 255,  85, 255),rgb(  85, 255,  85),rgb(  85, 255, 255),rgb( 255, 255,  85),rgb( 255, 255, 255),
+    { 
+        // cga
+        //rgb(   0,   0,   0),rgb(   0,   0, 170),rgb( 170,   0,   0),rgb( 170,   0, 170),rgb(   0, 170,   0),rgb(   0, 170, 170),rgb( 170,  85,   0),rgb( 170, 170, 170),
+        //rgb(  85,  85,  85),rgb(  85,  85, 255),rgb( 255,  85,  85),rgb( 255,  85, 255),rgb(  85, 255,  85),rgb(  85, 255, 255),rgb( 255, 255,  85),rgb( 255, 255, 255),
 
-    // c1084s scanned
-    //rgb(  46,  32,  33),rgb(  23,  47, 166),rgb( 162,  36,  27),rgb( 131,  23, 159),rgb(  49, 180,  30),rgb(  43, 147, 150),rgb( 152, 102,  58),rgb( 139, 145, 147),
-    //rgb(  65,  53,  53),rgb(  17,  80, 210),rgb( 201,  65,  53),rgb( 188,  50, 211),rgb(  86, 229,  42),rgb(  24, 194, 203),rgb( 195, 183,  75),rgb( 188, 186, 188),
+        // c1084s scanned
+        //rgb(  46,  32,  33),rgb(  23,  47, 166),rgb( 162,  36,  27),rgb( 131,  23, 159),rgb(  49, 180,  30),rgb(  43, 147, 150),rgb( 152, 102,  58),rgb( 139, 145, 147),
+        //rgb(  65,  53,  53),rgb(  17,  80, 210),rgb( 201,  65,  53),rgb( 188,  50, 211),rgb(  86, 229,  42),rgb(  24, 194, 203),rgb( 195, 183,  75),rgb( 188, 186, 188),
 
-    // CGA->C1084s, adjusted @fixme: greens too bright
-    rgb(  36,  18,  19),rgb(   0,  29, 173),rgb( 165,  15,   4),rgb( 125,   0, 159),rgb(  28, 190,   3),rgb(   7, 148, 151),rgb( 153,  90,  32),rgb( 152, 159, 163),
-    rgb(  36,  18,  19),rgb(   0,  64, 222),rgb( 208,  44,  29),rgb( 187,  16, 216),rgb(  68, 245,  14),rgb(   0, 196, 207),rgb( 199, 184,  41),rgb( 180, 178, 180),
-},
+        // CGA->C1084s, adjusted @fixme: greens too bright
+        rgb(  36,  18,  19),rgb(   0,  29, 173),rgb( 165,  15,   4),rgb( 125,   0, 159),rgb(  28, 190,   3),rgb(   7, 148, 151),rgb( 153,  90,  32),rgb( 152, 159, 163),
+        rgb(  36,  18,  19),rgb(   0,  64, 222),rgb( 208,  44,  29),rgb( 187,  16, 216),rgb(  68, 245,  14),rgb(   0, 196, 207),rgb( 199, 184,  41),rgb( 180, 178, 180),
+    },
     {
         // adaptation from EGA64 palette - https://commons.wikimedia.org/wiki/File:EGA64_Full_Palette.png
         rgb(  0,  0,  0),rgb(  0,  0,170),rgb(170,  0,  0),rgb(170,  0, 85),
@@ -570,19 +639,6 @@ rgba ZXPalettes[][64] = {
         rgb( 000, 000, 000),rgb( 000, 000, 156),rgb( 156, 000, 000),rgb( 156, 000, 156),rgb( 000, 156, 000),rgb( 000, 156, 156),rgb( 156, 156, 000),rgb( 156, 156, 156),
         rgb( 000, 000, 000),rgb( 000, 000, 225),rgb( 225, 000, 000),rgb( 225, 000, 225),rgb( 000, 225, 000),rgb( 000, 225, 225),rgb( 225, 225, 000),rgb( 225, 225, 225),
     },
-#if 0
-{ // https://lospec.com/palette-list/nec-p6
-//        rgb(  16,  20,  16),rgb(   0,   0, 255),rgb( 255,   0,   0),rgb( 255,   0, 255),rgb(   0, 255,   0),rgb(   0, 174, 255),rgb( 255, 174,   0),rgb( 173, 174, 173),
-//        rgb(   0,   0,   0),rgb( 173,   0, 255),rgb( 255,   0, 173),rgb(   0, 255, 173),rgb( 173, 255,   0),rgb(   0, 255, 255),rgb( 255, 255,   0),rgb( 255, 255, 255),
-        // https://lospec.com/palette-list/nec-pc-6001-mk2
-        //rgb(   0,   0,   0),rgb(   0,   0, 255),rgb( 255,   0,   0),rgb( 128,   0, 255),rgb(   0, 255,   0),rgb(   0, 255, 128),rgb( 255, 128,   0),rgb( 128, 128, 128),
-        //rgb(   0,   0,   0),rgb(   0, 128, 255),rgb( 255,   0, 128),rgb( 255,   0, 255),rgb( 128, 255,   0),rgb(   0, 255, 255),rgb( 255, 255,   0),rgb( 255, 255, 255),
-        // PC6001. fixed: increased brightness in white7
-        rgb(   0,   0,   0),rgb(   0,   0, 255),rgb( 255,   0,   0),rgb( 128,   0, 255),rgb( 128, 255,   0),rgb(   0, 255, 128),rgb( 255, 128,   0),rgb( 230, 230, 230),
-        rgb(   0,   0,   0),rgb(   0, 128, 255),rgb( 255,   0, 128),rgb( 255,   0, 255),rgb(   0, 255,   0),rgb(   0, 255, 255),rgb( 255, 255,   0),rgb( 255, 255, 255),
-
-},
-#endif
     {
         // gameboy. should be 4 shades, but we're doing 8 shades: many games are unplayable otherwise.
         rgb( 35-10, 84-10, 28-10),rgb( 35, 84, 28),rgb( 59-10,158-10, 59-10),rgb( 59,158, 59),rgb(124-10,186-10, 49-10),rgb(124,186, 49),rgb(174-10,255-10, 38-10),rgb(174,255, 38),
@@ -670,11 +726,11 @@ rgba ZXPalettes[][64] = {
         rgb(0xC6,0xC6,0xC6),
         rgb(0xEB,0xEB,0xEB),
     },
-// 4 B&W palette
-{
-    rgb(0x10,0x10,0x10), rgb(0x29,0x2d,0x29), rgb(0x4a,0x4d,0x4a), rgb(0x6b,0x6d,0x6b), rgb(0x7b,0x7d,0x7b), rgb(0x9c,0x9e,0x9c), rgb(0xbd,0xbe,0xbd), rgb(0xde,0xdf,0xde),
-    rgb(0x10,0x10,0x10), rgb(0x31,0x31,0x31), rgb(0x5a,0x5d,0x5a), rgb(0x7b,0x7d,0x7b), rgb(0x9c,0x9e,0x9c), rgb(0xbd,0xbe,0xbd), rgb(0xe6,0xe3,0xe6), rgb(0xff,0xff,0xff)
-},
+    {
+        // B&W palette
+        rgb(0x10,0x10,0x10), rgb(0x29,0x2d,0x29), rgb(0x4a,0x4d,0x4a), rgb(0x6b,0x6d,0x6b), rgb(0x7b,0x7d,0x7b), rgb(0x9c,0x9e,0x9c), rgb(0xbd,0xbe,0xbd), rgb(0xde,0xdf,0xde),
+        rgb(0x10,0x10,0x10), rgb(0x31,0x31,0x31), rgb(0x5a,0x5d,0x5a), rgb(0x7b,0x7d,0x7b), rgb(0x9c,0x9e,0x9c), rgb(0xbd,0xbe,0xbd), rgb(0xe6,0xe3,0xe6), rgb(0xff,0xff,0xff)
+    },
     {
         // gray original, pc emulators, b/w version. c0/ff to luma Y, then rgb(y,y,y)
         // gray(0x00,0x00,0x00),gray(0x00,0x00,0xC0),gray(0xC0,0x00,0x00),gray(0xC0,0x00,0xC0),
@@ -703,6 +759,10 @@ rgba ZXPalettes[][64] = {
         gray3(0xC3^0xFF),gray3(0xD3^0xFF),gray3(0xEB^0xFF),gray3(0xF8^0xFF),
     },
     {
+        // extended
+        0
+    },
+    {
         // external. must be last entry
         0
     },
@@ -714,7 +774,7 @@ void palette_dump_all(void) {
     
     for( int j = 0; j < ZX_PALETTE_EXTERNAL; ++j )
     {
-        char clean[32];
+        char clean[32+1];
         sscanf(ZXPaletteNames[j] + 2, "%32[^\n]", clean); // skip "00" digits
 
         const char *name = va("Spectral_%s.pal", clean);
@@ -742,6 +802,45 @@ void palette_use(int palette, int bloom_cfg) {
     if(bloom_cfg) ZX_BLOOM = atoi(ZXPaletteNames[palette]);
 }
 
+static int palette_load_jasc(rgba *pal32, const char *text, int size) {
+    if (!pal32 || !text || size <= 16) return 0;
+
+    char version[16];
+    int colors;
+    int consumed = 0;
+
+    if (sscanf(text, "JASC-PAL %15s %d%n",
+               version, &colors, &consumed) != 2 ||
+        strcmp(version, "0100") != 0 ||
+        colors != 16 ||
+        consumed <= 0) {
+        return 0;
+    }
+
+    const char *p = text + consumed;
+
+    for (int i = 0; i < 16; ++i) {
+        int r, g, b;
+        int n = 0;
+
+        if (sscanf(p, " %d %d %d%n", &r, &g, &b, &n) == 3)
+        if (n > 0)
+        if (r >= 0 && r <= 255)
+        if (g >= 0 && g <= 255)
+        if (b >= 0 && b <= 255) {
+            pal32[i] = rgb(r, g, b);
+            p += n;
+            continue;
+        }
+
+        return 0;
+    }
+
+    while (isspace((unsigned char)*p)) ++p;
+    int ok = (*p == '\0');
+
+    return ok;
+}
 int pal_loadbin(const void *palette, int size) {
     if( palette && size == 64 ) {
         if( writefile(".Spectral/Spectral.pal", palette, size) ) { // save for later
@@ -755,6 +854,16 @@ int pal_loadbin(const void *palette, int size) {
         if( writefile(".Spectral/Spectral.pal", palette, size) ) { // save for later
             rgba *pal32 = ZXPalettes[ (countof(ZXPalettes) - 1) ];
             for( int i = 0; i < 16; ++i ) memcpy(pal32 + i, (byte*)palette + i*3, 3);
+            for( int i = 0; i < 16; ++i ) pal32[i] |= rgb(0,0,0); // set alpha
+            return 1;
+        }
+    }
+    if( palette && size > 64 ) {
+        rgba parsed[16];
+        if (palette_load_jasc(parsed, palette, size))
+        if (writefile(".Spectral/Spectral.pal", palette, size)) {
+            rgba *pal32 = ZXPalettes[ (countof(ZXPalettes) - 1) ];
+            memcpy(ZXPalettes[countof(ZXPalettes) - 1], parsed, sizeof parsed);
             for( int i = 0; i < 16; ++i ) pal32[i] |= rgb(0,0,0); // set alpha
             return 1;
         }
