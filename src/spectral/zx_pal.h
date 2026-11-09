@@ -13,6 +13,10 @@ rgb(   6,   6,   6),rgb(  34,  24,  80),rgb( 128,  32,   0),rgb( 137,  12, 137),
 rgb(   6,   6,   6),rgb(   9,  51, 121),rgb( 183,   0,   4),rgb( 192,   3,  84),rgb( 153, 204,   0),rgb(   0, 216, 128),rgb( 244, 196,   0),rgb( 241, 255, 217),
 */
 
+/*
+idea: blade runner, troya
+*/
+
 #define luma(r,g,b) ((byte)((r)*0.299+(g)*0.587+(b)*0.114))
 #define gray(r,g,b) rgb(luma(r,g,b),luma(r,g,b),luma(r,g,b))
 #define gray3(l)    rgb(l,l,l)
@@ -42,7 +46,8 @@ const char *ZXPaletteNames[] = {
 
     /*#15*/"00" "PurpleRain",
     /*#16*/"00" "Angrite",
-    /*#17*/"00" "Angrite2\n",
+    /*#17*/"00" "Angrite2",
+    "00" "Promise\n",
 
     "00" "MM", // micromania magazine https://archive.org/details/MicromaniaPrimerEpocaspanishIssue23/page/n41/mode/2up
     "00" "MH", // microhobby magazine https://archive.org/details/microhobby-magazine-217.pdf/page/n41/mode/2up
@@ -57,6 +62,10 @@ const char *ZXPaletteNames[] = {
 
     /*#19*/ "00" "Pico8",
     /*#20*/ "00" "Petit",
+"00" "Tic80",
+"00" "Kid15",
+"00" "Kid16",
+"00" "Sherwood",
     /*#21*/ "00" "Bringer",
     /*#22*/"00" "Endesga\n",
 
@@ -92,8 +101,8 @@ const char *ZXPaletteNames[] = {
 };
 
 // default palettes used elsewhere
-enum { ZX_PALETTE_PLAYER = 23+6 }; // gradients now; vivid before
-enum { ZX_PALETTE_GRAY = 36+6 }; // noir
+enum { ZX_PALETTE_PLAYER = 23+6+1+1+1+1+1 }; // gradients now; vivid before
+enum { ZX_PALETTE_GRAY = 36+6+1+1+1+1+1 }; // noir
 enum { ZX_PALETTE_EXTERNAL = countof(ZXPaletteNames)-1, ZX_PALETTE_EXTENDED = ZX_PALETTE_EXTERNAL-1 };
 
 rgba ZXPalettes[][64] = {
@@ -105,7 +114,7 @@ rgba ZXPalettes[][64] = {
     {
         // spectral palette. note: no pure black
         rgb(0x12,0x10,0x12),rgb(0x00,0x00,0xAC),rgb(0xAC,0x00,0x00),rgb(0xAC,0x00,0xAC),
-        rgb(0x00,0xAC,0x00),rgb(0x00,0xAC,0xAC),rgb(0xAC,0xAC,0x00),rgb(0xAC,0xAC,0xAC),
+        rgb(0x00,0xAC,0x00),rgb(0x00,0xAC,0xAC),rgb(0xAC,0xAC,0x00),rgb(181,181,181),
         rgb(0x12,0x10,0x12),rgb(0x00,0x00,0xFF),rgb(0xFF,0x00,0x00),rgb(0xFF,0x00,0xFF),
         rgb(0x00,0xFF,0x00),rgb(0x00,0xFF,0xFF),rgb(0xFF,0xFF,0x00),rgb(0xFF,0xFF,0xFF),
     },
@@ -383,6 +392,11 @@ rgba ZXPalettes[][64] = {
         rgb(   6,  25,  40),rgb(  16,  37, 140),rgb( 172,   0,   0),rgb( 192,   3,  84),rgb( 153, 204,   0),rgb(   0, 216, 128),rgb( 244, 196,   0),rgb( 235, 222, 205),
     },
     {
+        // promise, this one is promising (WIP)
+        rgb(   0,   0,  31),rgb(  28,  40,  83),rgb( 101,  43,  18),rgb( 111,   0, 147),rgb(  44, 143,  51),rgb(   4, 135, 198),rgb( 224, 157,   1),rgb( 193, 194, 171),
+        rgb(   0,   0,  31),rgb(  14,  35, 156),rgb( 180,  29,   0),rgb( 210,   0, 121),rgb( 128, 192,   0),rgb(  41, 184, 255),rgb( 225, 198,   0),rgb( 233, 225, 214),
+    },
+    {
         // MM https://archive.org/details/MicromaniaPrimerEpocaspanishIssue23/page/n41/mode/2up
         rgb(  28,  23,  25),rgb(  91,  85, 119),rgb( 167,  51,  48),rgb( 190,  41,  71),rgb(  93, 136, 123),rgb(  65, 141, 203),rgb( 205, 208,  64),rgb( 221, 219, 220),
         rgb(  28,  23,  25),rgb(  41, 106, 171),rgb( 196,  50,  34),rgb( 214,  31,  72),rgb(  70, 155, 130),rgb(  81, 170, 210),rgb( 240, 234,   0),rgb( 244, 244, 244),
@@ -411,7 +425,7 @@ rgba ZXPalettes[][64] = {
 #endif
     {
         // tintin: sampled from front-page magazines
-        rgb(  12,  14,  11),rgb(  24,  55,  80),rgb( 109,  29,  18),rgb( 138,  54,  14),rgb(  45, 117,  18),rgb(  95, 127, 152),rgb( 215, 156,  54),rgb( 205, 189, 176),
+        rgb(  12,  14,  11),rgb(  24,  55,  80),rgb( 109,  29,  18),rgb( 138,  54,  14),rgb(  45, 117,  18),rgb(  77, 127, 152),rgb( 215, 156,  54),rgb( 205, 189, 176),
         rgb(  12,  14,  11),rgb(   1,  60, 176),rgb( 205,  28,  11),rgb( 212,  95,   2),rgb( 139, 182,  15),rgb(   0, 152, 196),rgb( 248, 217,  11),rgb( 254, 238, 204),
     },
     {
@@ -448,11 +462,48 @@ rgba ZXPalettes[][64] = {
         // rgb(  0,  0,  0),rgb(  0, 56,243),rgb(251, 24,  0),rgb(251, 89,195),
         // rgb(  0,243, 24),rgb(  0,186,251),rgb(251,227,  0),rgb(251,251,251),
 
-        // redone: no new colors: gray as cyan, dupe blue
-        rgb(0x00,0x00,0x00),rgb(0x00,0x38,0xf3),rgb(0x92,0x59,0x28),rgb(0x79,0x38,0xfb),
+        // redone: no new colors: gray as cyan, dark gray as blue
+        rgb(0x00,0x00,0x00),rgb(0x38,0x38,0x38),rgb(0x92,0x59,0x28),rgb(0x79,0x38,0xfb),
         rgb(0x00,0x79,0x00),rgb(0x00,0xba,0xfb),rgb(0xfb,0xa2,0x00),rgb(0xfb,0xcb,0xa2),
         rgb(0x00,0x00,0x00),rgb(0x00,0x38,0xf3),rgb(0xfb,0x18,0x00),rgb(0xfb,0x59,0xc3),
         rgb(0x00,0xf3,0x18),rgb(0xba,0xba,0xba),rgb(0xfb,0xe3,0x00),rgb(0xfb,0xfb,0xfb),
+    },
+    {
+        // tic80 https://lospec.com/palette-list/sweetie16 by grafxkid
+        // original, sorted
+        // rgb(  26,  29,  44),rgb(  93,  38,  92),rgb( 177,  62,  83),rgb( 239, 125,  86),rgb( 254, 205, 116),rgb( 167, 241, 112),rgb(  56, 183, 100),rgb(  37, 112, 120),
+        // rgb(  41,  55, 111),rgb(  58,  93, 200),rgb(  64, 166, 247),rgb( 115, 238, 246),rgb( 244, 244, 244),rgb( 148, 176, 194),rgb(  86, 108, 135),rgb(  51,  61,  87),
+
+        // original, arranged
+        // rgb(  26,  29,  44),rgb(  41,  55, 111),rgb(  93,  38,  92),rgb(  86, 108, 135),rgb(  37, 112, 120),rgb(  64, 166, 247),rgb( 239, 125,  86),rgb(  51,  61,  87),
+        // rgb( 167, 241, 112),rgb(  58,  93, 200),rgb( 177,  62,  83),rgb( 148, 176, 194),rgb(  56, 183, 100),rgb( 115, 238, 246),rgb( 254, 205, 116),rgb( 244, 244, 244),
+
+        // arranged, then a few color components swapped to create purples
+        rgb(  26,  29,  44),rgb(  41,  55, 111),rgb(  93,  38,  92),rgb( 108,  86, 135),rgb(  37, 112, 120),rgb(  64, 166, 247),rgb( 239, 125,  86),rgb( 148, 176, 194),
+        rgb(  26,  29,  44),rgb(  58,  93, 200),rgb( 177,  62,  83),rgb( 241, 112, 167),rgb(  56, 183, 100),rgb( 115, 238, 246),rgb( 254, 205, 116),rgb( 244, 244, 244),        
+    },
+    {
+        // kid15 taken from https://lospec.com/palette-list/24p-dx by grafxkid
+        rgb(  23,  15,   7),rgb(  13,  65,  87),rgb( 111,  36,  29),rgb(  99,  44,  83),rgb(  32, 121,  73),rgb(   0, 171, 196),rgb( 238, 131,   0),rgb( 201, 183, 156),
+        rgb(  23,  15,   7),rgb(   0, 113, 157),rgb( 192,  70,  14),rgb( 183,  70, 108),rgb( 102, 182,  50),rgb( 111, 221, 213),rgb( 255, 196,  45),rgb(0xfc,0xf5,0xe8),
+    },
+    {
+        // kid16
+        rgb(  23,  15,   7),rgb(  12,  36,  78),rgb( 112,  29,  29),rgb(  99,  44,  85),rgb(  32, 121,  77),rgb(   0, 147, 196),rgb( 238, 179,   0),rgb( 217, 204, 185),
+        rgb(  23,  15,   7),rgb(  14,  45, 135),rgb( 196,  11,  57),rgb( 183,  70, 113),rgb( 100, 182,  50),rgb( 111, 207, 221),rgb( 253, 220,   0),rgb( 252, 245, 232),        
+    },
+    {
+        // Sherwood, original purple blues
+        // rgb(   0,   0,  30),rgb(  47,  34,  83),rgb( 120,  53,  31),rgb( 147,  40,  67),rgb(  77, 121,  32),rgb(   0, 183, 137),rgb( 215, 162,   0),rgb( 217, 204, 185),
+        // rgb(   0,   0,  30),rgb(  67,  44, 105),rgb( 184,  70,   1),rgb( 211,  37,  85),rgb( 149, 182,  50),rgb( 111, 221, 193),rgb( 253, 190,   0),rgb( 252, 245, 232),
+        
+        // mud blues
+        //rgb(   0,   0,  30),rgb(  23,  51,  55),rgb( 120,  53,  31),rgb( 147,  40,  67),rgb(  77, 121,  32),rgb(   0, 183, 137),rgb( 215, 162,   0),rgb( 217, 204, 185),
+        //rgb(   0,   0,  30),rgb(  29,  66,  71),rgb( 184,  70,   1),rgb( 211,  37,  85),rgb( 149, 182,  50),rgb( 111, 221, 193),rgb( 253, 190,   0),rgb( 252, 245, 232),
+
+        // ocean blues
+        rgb(   0,   0,  30),rgb(   5,  43,  58),rgb( 120,  53,  31),rgb( 147,  40,  67),rgb(  77, 121,  32),rgb(   0, 183, 137),rgb( 215, 162,   0),rgb( 217, 204, 185),
+        rgb(   0,   0,  30),rgb(   6,  52,  79),rgb( 184,  70,   1),rgb( 211,  37,  85),rgb( 149, 182,  50),rgb( 111, 221, 193),rgb( 253, 190,   0),rgb( 252, 245, 232),
     },
     {
         // dawnbringer's original
